@@ -6,6 +6,21 @@
   box-sizing: border-box;
 }
 
-button {
-  width: 15px;
+#input-wrapper {
+  display: grid;
+  width: 300px;
+  height: 400px;
+  grid-template: repeat(5, 1fr) / repeat(4, 1fr);
+  grid-gap: 10px;
+  margin: 50px auto;
 }
+
+#zero {
+  grid-column: 1 / span 2;
+}
+
+#equal {
+  grid-row: 4 / span 2;
+  grid-column: 4;
+}
+
