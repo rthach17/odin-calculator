@@ -6,16 +6,26 @@
   box-sizing: border-box;
 }
 
+body {
+  width: 100vw;
+}
+
 #input-wrapper {
-  display: grid;
-  width: 300px;
   height: 400px;
-  grid-template: repeat(5, 1fr) / repeat(4, 1fr);
-  grid-gap: 10px;
+  width: 300px;
+  border: 2px solid #555;
+  border-radius: 20px;
+  background-color: #999;
+  padding: 10px;
   margin: 50px auto;
+
+  display: grid;
+  grid-template: repeat(5, 1fr) / repeat(4, 1fr);
+  grid-gap: 5px;
 }
 
 #input-wrapper button {
+  border: 2px ridge #fff;
   border-radius: 20px;
   font-size: 20px;
   font-family: "Chivo Mono", Helvetica, sans-serif;
