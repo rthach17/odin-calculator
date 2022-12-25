@@ -7,15 +7,13 @@ let operatorClicked = false;
 
 function updateDisplays(button) {
   if (button === "AC") clearAll();
-  if (button === "DEL") {
-    if (operatorClicked) {
-      clearExpression();
-      operatorClicked = false;
-    }
+  if (button === "DEL" && !operatorClicked)
     removeCharFromDisplay(displayInput);
-  }
 
-  if (Number(button)) {
+  if (Number(button) || button == 0) {
+    if (displayInput.textContent == 0) {
+      displayInput.textContent = "";
+    } 
     if (operatorClicked) {
       displayInput.textContent = "";
       operatorClicked = false;
@@ -24,19 +22,39 @@ function updateDisplays(button) {
   }
 
   if ("+-*/".includes(button)) {
-    if (!isEmpty(displayInput.textContent) && isEmpty(expression)) {
+    if (isEmpty(displayInput.textContent) && isEmpty(expression)) return;
+
+    if (isEmpty(expression)) {
       expression.push(displayInput.textContent);
       expression.push(button);
       operatorClicked = true;
     }
-    if (operatorClicked) expression[1] = button;
-    
-  }
 
-  if (button === "=" && !operatorClicked) {
-    if (expression.length === 2 && !isEmpty(displayInput.textContent)) {
+    if (expression.length === 2 && !operatorClicked) {
       expression.push(displayInput.textContent);
       let result = calculateExpression();
+      clearExpression();
+      expression.push(result);
+      expression.push(button);
+      displayInput.textContent = result;
+      operatorClicked = true;
+    }
+
+    if (operatorClicked) {
+      expression[1] = button;
+    }
+  }
+
+  if (button === "=" && expression.length === 2) {
+    if (!isEmpty(displayInput.textContent) && !operatorClicked) {
+      expression.push(displayInput.textContent);
+      let result = calculateExpression();
+      clearAll();
+      displayOutput.textContent = result;
+    }
+
+    if (operatorClicked) {
+      let result = displayInput.textContent;
       clearAll();
       displayOutput.textContent = result;
     }
