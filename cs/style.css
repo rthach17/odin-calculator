@@ -23,28 +23,47 @@ body, button {
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  width: 250px;
+
+  border: 2px solid #000;
+  border-radius: 10px;
+  background: #148f54;
+  padding: 10px;
 }
 
-#calculator .display-wrapper {
+#calculator .display-wrapper-outer {
   display: flex;
-  background-color: green;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-end;
-  width: inherit;
+  gap: 5px;
+
+  width: 250px;
+  height: auto;
+  border-radius: 10px;
 }
 
-#calculator .display {
-  background: #555;
-  color: white;
+#calculator .display-wrapper-inner {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  background: #e9e9ed;
+  border: 2px solid #555;
+  border-radius: 10px;
+  padding: 5px;
+  color: #000;
+  width: 250px;
   height: 50px;
-  line-height: 50px; /* Needed to vertically center text in display */
+  
 }
 
- #calculator #input-wrapper {
+#calculator .display-wrapper-inner span {
+  font-size: 30px;
+  overflow-inline: auto;
+}
+
+#calculator #input-wrapper {
   height: 350px;
-  width: inherit;
+  width: 250px;
   border: 2px solid #555;
   border-radius: 15px;
   background-color: #999;
