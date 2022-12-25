@@ -22,17 +22,29 @@ body, button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 5px;
+  width: 250px;
+}
+
+#calculator .display-wrapper {
+  display: flex;
+  background-color: green;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  width: inherit;
 }
 
 #calculator .display {
-  padding: 20px;
   background: #555;
   color: white;
+  height: 50px;
+  line-height: 50px; /* Needed to vertically center text in display */
 }
 
  #calculator #input-wrapper {
   height: 350px;
-  width: 250px;
+  width: inherit;
   border: 2px solid #555;
   border-radius: 15px;
   background-color: #999;
