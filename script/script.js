@@ -1,7 +1,7 @@
 const inputWrapper = document.getElementById('input-wrapper');
 const inputs = document.querySelectorAll('button');
-const displayInput = document.querySelector('p.display-input');
-const displayOutput = document.querySelector('p.display-output');
+const displayInput = document.querySelector('.display-input');
+const displayOutput = document.querySelector('.display-output');
 const expression = [];
 let operatorClicked = false;
 
@@ -22,6 +22,7 @@ function updateDisplays(button) {
     }
     addCharToDisplay(button, displayInput);
   }
+
   if ("+-*/".includes(button)) {
     if (!isEmpty(displayInput.textContent) && isEmpty(expression)) {
       expression.push(displayInput.textContent);
@@ -30,29 +31,30 @@ function updateDisplays(button) {
     }
     if (operatorClicked) expression[1] = button;
   }
-  if (button === "=") {
-    if (expression.length === 2 && !isEmpty(displayInput.textContent)) {
-      expression.push(displayInput.textContent);
-      let result = operate(expression[0], expression[1], expression[2]);
-      displayOutput.textContent = result;
-      clearExpression();
-      clearDisplay(displayInput);
-      operatorClicked = false;
-    }
-  }
+
+  if (button === "=" && !operatorClicked) calculateExpression();
 
   return;
 }
 
 function clearAll() {
-  clearDisplay(displayInput);
-  clearDisplay(displayOutput);
+  clearDisplays();
   clearExpression();
   operatorClicked = false;
 }
 
-function clearDisplay(displayElement) {
-  displayElement.textContent = "";
+function clearDisplays() {
+  displayInput.textContent = "";
+  displayOutput.textContent = "0";
+}
+
+function calculateExpression() {
+  if (expression.length === 2 && !isEmpty(displayInput.textContent)) {
+    expression.push(displayInput.textContent);
+    let result = operate(expression[0], expression[1], expression[2]);
+    clearAll();
+    displayOutput.textContent = result;
+  }
 }
 
 function clearExpression() {
@@ -66,6 +68,11 @@ function removeCharFromDisplay(displayElement) {
 
 function addCharToDisplay(char, displayElement) {
   displayElement.textContent += char; 
+}
+
+function isEmpty(variable) {
+  if (variable.length === 0) return true;
+  return false;
 }
 
 function operate(a, operator, b) {
@@ -97,10 +104,6 @@ function divide(a, b) {
   return result;
 }
 
-function isEmpty(variable) {
-  if (variable.length === 0) return true;
-  return false;
-}
 
 // Button Input
 inputWrapper.addEventListener("click", event => {
