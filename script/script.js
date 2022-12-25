@@ -1,18 +1,19 @@
 const inputWrapper = document.getElementById('input-wrapper');
+const inputs = document.querySelectorAll('button');
+const display = document.querySelector('p.display');
+
 inputWrapper.addEventListener("click", event => {
   if (event.target.nodeName == "BUTTON") {
-    let button = event.target.textContent;
-    console.log(button);
-  }
+    display.textContent = event.target.textContent;
+    }
 })
 
-const inputs = document.querySelectorAll('button');
 document.addEventListener("keydown", event => {
   if(event.repeat) return;
   event.preventDefault();
   let button = document.querySelector(`[class*="${event.key}"]`) || 
                document.querySelector(`[class*="${event.code}"]`);
-  if (button) console.log(button.textContent);
+  if (button) button.click();
   return;
 });
 
