@@ -30,9 +30,17 @@ function updateDisplays(button) {
       operatorClicked = true;
     }
     if (operatorClicked) expression[1] = button;
+    
   }
 
-  if (button === "=" && !operatorClicked) calculateExpression();
+  if (button === "=" && !operatorClicked) {
+    if (expression.length === 2 && !isEmpty(displayInput.textContent)) {
+      expression.push(displayInput.textContent);
+      let result = calculateExpression();
+      clearAll();
+      displayOutput.textContent = result;
+    }
+  }
 
   return;
 }
@@ -49,12 +57,7 @@ function clearDisplays() {
 }
 
 function calculateExpression() {
-  if (expression.length === 2 && !isEmpty(displayInput.textContent)) {
-    expression.push(displayInput.textContent);
-    let result = operate(expression[0], expression[1], expression[2]);
-    clearAll();
-    displayOutput.textContent = result;
-  }
+    return operate(expression[0], expression[1], expression[2]);
 }
 
 function clearExpression() {
