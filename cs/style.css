@@ -34,12 +34,11 @@ button {
   cursor: pointer;
 }
 
-button.zero {
+button[class="0"] {
   grid-column: 1 / span 2;
 }
 
-button.equal {
+button[class="Enter"] {
   grid-row: 4 / span 2;
   grid-column: 4;
 }
-
