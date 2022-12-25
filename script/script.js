@@ -1,6 +1,6 @@
 const inputWrapper = document.getElementById('input-wrapper');
 const inputs = document.querySelectorAll('button');
-const display = document.querySelector('p.display');
+const display = document.querySelector('p.display-input');
 
 // Button Input
 inputWrapper.addEventListener("click", event => {
