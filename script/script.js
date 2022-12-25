@@ -45,20 +45,17 @@ function updateDisplays(button) {
     }
   }
 
-  if (button === "=" && expression.length === 2) {
-    if (!isEmpty(displayInput.textContent) && !operatorClicked) {
+  if (button === "=" && !isEmpty(displayInput.textContent)) {
+    let result = '';
+    if (expression.length === 2 && !operatorClicked) {
       expression.push(displayInput.textContent);
-      let result = calculateExpression();
-      clearAll();
-      displayOutput.textContent = result;
+      result = calculateExpression();
+    } else {
+      result = displayInput.textContent;
     }
-
-    if (operatorClicked) {
-      let result = displayInput.textContent;
-      clearAll();
-      displayOutput.textContent = result;
-    }
-  }
+    clearAll();
+    displayOutput.textContent = result;
+}
 
   return;
 }
