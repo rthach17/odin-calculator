@@ -1,5 +1,4 @@
 const inputWrapper = document.getElementById('input-wrapper');
-const inputs = document.querySelectorAll('button');
 const displayInput = document.querySelector('.display-input');
 const displayOutput = document.querySelector('.display-output');
 const expression = [];
