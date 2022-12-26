@@ -57,7 +57,8 @@ body, button {
 #calculator .display-wrapper-inner span {
   font-size: 30px;
   color: #fff;
-  overflow-inline: auto;
+  overflow: hidden;
+  text-overflow: "";
 }
 
 #calculator #input-wrapper {
