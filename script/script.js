@@ -6,14 +6,14 @@ const expression = [];
 let operatorClicked = false;
 
 function updateDisplays(button) {
+  // Buttons that clear text
   if (button === "AC") clearAll();
   if (button === "DEL" && !operatorClicked)
     removeCharFromDisplay(displayInput);
-
-  if (Number(button) || button == 0) {
-    if (displayInput.textContent == 0) {
-      displayInput.textContent = "";
-    } 
+  
+  // Operands
+  if (Number(button) || button === '0') {
+    if (displayInput.textContent === '0' ) displayInput.textContent = "";
     if (operatorClicked) {
       displayInput.textContent = "";
       operatorClicked = false;
@@ -21,9 +21,22 @@ function updateDisplays(button) {
     addCharToDisplay(button, displayInput);
   }
 
-  if ("+-*/".includes(button)) {
-    if (isEmpty(displayInput.textContent) && isEmpty(expression)) return;
+  // Decimal
+  if (button === ".") {
+    if (isEmpty(displayInput.textContent)) displayInput.textContent = '0';
+    if (operatorClicked) {
+      displayInput.textContent = '0';
+      operatorClicked = false;
+    }
+    if (displayInput.textContent.includes('.')) return;
+    addCharToDisplay(button, displayInput);
+  }
 
+  if (isEmpty(displayInput.textContent)) return;
+  if (displayInput.textContent.endsWith('.')) return;
+
+  // Operators
+  if ("+-*/".includes(button)) {
     if (isEmpty(expression)) {
       expression.push(displayInput.textContent);
       expression.push(button);
@@ -36,16 +49,13 @@ function updateDisplays(button) {
       clearExpression();
       expression.push(result);
       expression.push(button);
-      displayInput.textContent = result;
       operatorClicked = true;
+      displayInput.textContent = Number(result);
     }
 
-    if (operatorClicked) {
-      expression[1] = button;
-    }
+    if (operatorClicked) expression[1] = button;
   }
-
-  if (button === "=" && !isEmpty(displayInput.textContent)) {
+  if (button === "=") {
     let result = '';
     if (expression.length === 2 && !operatorClicked) {
       expression.push(displayInput.textContent);
@@ -54,8 +64,8 @@ function updateDisplays(button) {
       result = displayInput.textContent;
     }
     clearAll();
-    displayOutput.textContent = result;
-}
+    displayOutput.textContent = Number(result);
+  }
 
   return;
 }
